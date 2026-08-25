@@ -29,7 +29,6 @@ use tokio::sync::Mutex;
 use tracing::error;
 use uuid::Uuid;
 
-#[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tracing_subscriber::fmt::init();
     let boot_id = Uuid::new_v4().to_string();

@@ -1,9 +1,7 @@
 use cpal::traits::{DeviceTrait, HostTrait};
 use serde::{Deserialize, Serialize};
-use ts_rs::TS;
 
-#[derive(Debug, Serialize, Deserialize, Clone, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct AudioDeviceInfo {
     pub id: String,
     pub name: String,

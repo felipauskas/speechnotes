@@ -1,10 +1,8 @@
 use serde::{Deserialize, Serialize};
 use std::fmt;
 use thiserror::Error;
-use ts_rs::TS;
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub enum AppErrorCode {
     MicrophonePermissionDenied,
     NoInputDevice,
@@ -29,8 +27,7 @@ impl fmt::Display for AppErrorCode {
     }
 }
 
-#[derive(Debug, Error, Serialize, Deserialize, Clone, PartialEq, Eq, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Error, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub struct AppError {
     pub code: AppErrorCode,
     pub message: String,

@@ -8,7 +8,6 @@ use std::io::{BufWriter, Read, Write};
 use std::path::{Path, PathBuf};
 use tokio::sync::Mutex;
 use tracing::info;
-use ts_rs::TS;
 
 const MODEL_ID: &str = "whisper-large-v3-mlx";
 const MODEL_DIR: &str = "mlx-whisper-large-v3";
@@ -18,8 +17,7 @@ pub const MODEL_SHA256: &str = "05ff791ce3630fae47e7c51004e9666204d786246ec07cac
 const CONFIG_SHA256: &str = "34982ce6ae286095000f82ae9583b3431639e8b092bf60c961f203745e6500e3";
 const MODEL_BASE_URL: &str = "https://huggingface.co/mlx-community/whisper-large-v3-mlx/resolve/49e6aa286ad60c14352c404340ded53710378a11";
 
-#[derive(Debug, Serialize, Deserialize, Clone, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ModelInfo {
     pub id: String,
     pub name: String,
@@ -31,8 +29,7 @@ pub struct ModelInfo {
     pub is_default: bool,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct DownloadProgressPayload {
     pub model_id: String,
     pub downloaded_bytes: u64,

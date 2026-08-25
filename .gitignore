@@ -1,43 +1,26 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
+# Dependencies and build output
 node_modules
 dist
-dist-ssr
-*.local
-.env
-.env.*
-!.env.example
+src-tauri/target
+src-tauri/gen/schemas
 
-# Application dynamic data & binaries
-/models/
-recordings/
+# Sidecar build
 workers/mlx-whisper-worker/.venv/
 workers/mlx-whisper-worker/build/
 workers/mlx-whisper-worker/dist/
 workers/mlx-whisper-worker/build-inputs.sha256
-build/
 *.spec
+src-tauri/binaries/*
+!src-tauri/binaries/.gitkeep
+
+# Local data and secrets
+.env
+.env.*
 *.db
 *.db-*
 *.sqlite
 *.sqlite-*
 *.wav
-*.pcm
-*.m4a
-*.mp3
-*.flac
-*.bin
-*.npz
-*.safetensors
-*.gguf
-*.mlmodelc/
 *.dmg
 *.app
 *.app.zip
@@ -46,31 +29,16 @@ build/
 *.p8
 *.p12
 *.mobileprovision
-src-tauri/binaries/*
-!src-tauri/binaries/.gitkeep
+/models/
+recordings/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Logs and editor
+logs
+*.log
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Python cache and local history
+.idea
+.vscode
 __pycache__/
 *.py[cod]
 .venv/
 venv/
-.cache/
-.huggingface/
-.prism-history.md
-
-# Test and tool output
-coverage/
-.coverage
-htmlcov/
-.pytest_cache/

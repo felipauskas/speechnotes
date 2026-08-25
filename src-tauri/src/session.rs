@@ -5,10 +5,8 @@ use std::sync::atomic::{AtomicU64, Ordering};
 use std::sync::Arc;
 use tokio::sync::Mutex;
 use tracing::info;
-use ts_rs::TS;
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
 pub enum SessionState {
     Idle,
@@ -16,8 +14,7 @@ pub enum SessionState {
     Transcribing,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct SessionStatePayload {
     pub boot_id: String,
     pub session_id: Option<String>,

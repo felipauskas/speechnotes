@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ApiClient } from "../lib/tauri";
-import { SessionState } from "../lib/generated/SessionState";
-import { TranscriptionRecord } from "../lib/generated/TranscriptionRecord";
+import { SessionState, TranscriptionRecord } from "../lib/types";
 
 export const OverlayView: React.FC = () => {
   const [sessionState, setSessionState] = useState<SessionState>("idle");

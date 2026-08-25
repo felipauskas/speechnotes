@@ -1,13 +1,14 @@
 import { invoke } from "@tauri-apps/api/core";
 import { listen, UnlistenFn } from "@tauri-apps/api/event";
 
-import { SessionStatePayload } from "./generated/SessionStatePayload";
-import { TranscriptionRecord } from "./generated/TranscriptionRecord";
-import { AudioDeviceInfo } from "./generated/AudioDeviceInfo";
-import { ModelInfo } from "./generated/ModelInfo";
-import { DownloadProgressPayload } from "./generated/DownloadProgressPayload";
-
-import { PermissionStatus } from "./generated/PermissionStatus";
+import {
+  AudioDeviceInfo,
+  DownloadProgressPayload,
+  ModelInfo,
+  PermissionStatus,
+  SessionStatePayload,
+  TranscriptionRecord,
+} from "./types";
 
 export class ApiClient {
   static async getApplicationState(): Promise<SessionStatePayload> {

@@ -5,7 +5,7 @@ use crate::models::{ModelInfo, ModelManager, MODEL_REVISION, MODEL_SHA256};
 use crate::permissions::{PermissionManager, PermissionStatus};
 use crate::persistence::{TranscriptionCompletion, TranscriptionRecord, TranscriptionRepository};
 use crate::session::{SessionManager, SessionStatePayload};
-use crate::transcription::{DiagnosticEvent, DiagnosticLogger, WorkerSupervisor};
+use crate::transcription::WorkerSupervisor;
 
 use std::path::PathBuf;
 use std::sync::Arc;
@@ -240,16 +240,16 @@ pub async fn stop_recording(
             },
         )?;
 
-        DiagnosticLogger::log_event(DiagnosticEvent {
-            session_id: session_id.clone(),
-            engine_id: selected_engine,
-            model_id: selected_model_id,
-            audio_duration_ms: prep_info.duration_ms,
-            processing_time_ms: res.processing_time_ms,
-            is_silent: prep_info.is_silent,
-            status: "completed".to_string(),
-            error_code: None,
-        });
+        tracing::info!(
+            target: "stt_diagnostics",
+            session_id = %session_id,
+            engine = %selected_engine,
+            model = %selected_model_id,
+            audio_duration_ms = prep_info.duration_ms,
+            processing_time_ms = res.processing_time_ms,
+            is_silent = prep_info.is_silent,
+            "STT execution completed"
+        );
 
         let auto_copy_setting = state
             .repository

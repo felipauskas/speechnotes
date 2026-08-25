@@ -87,7 +87,7 @@ npm run build:release   # production DMG
 | `src-tauri/` | Rust app: capture, session state, SQLite persistence, worker supervision |
 | `workers/mlx-whisper-worker/` | Python MLX inference sidecar, PyInstaller-frozen at build time |
 | `src/` | React UI: recording overlay + transcript library |
-| `docs/` | Architecture, worker protocol, engine-selection notes |
+| `docs/` | Architecture, protocol, and engine-selection notes |
 
 ## License
 

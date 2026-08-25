@@ -8,7 +8,6 @@
     "build": "tsc && vite build",
     "build:mlx-worker": "./workers/mlx-whisper-worker/build-worker.sh",
     "build:release": "sh ./scripts/build-release.sh",
-    "preview": "vite preview",
     "tauri": "tauri"
   },
   "dependencies": {

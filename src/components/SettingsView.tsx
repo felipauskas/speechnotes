@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ApiClient } from "../lib/tauri";
-import { TranscriptionRecord } from "../lib/generated/TranscriptionRecord";
-import { ModelInfo } from "../lib/generated/ModelInfo";
-import { AudioDeviceInfo } from "../lib/generated/AudioDeviceInfo";
+import {
+  AudioDeviceInfo,
+  ModelInfo,
+  PermissionStatus,
+  TranscriptionRecord,
+} from "../lib/types";
 import { enable, disable, isEnabled } from "@tauri-apps/plugin-autostart";
-
-import { PermissionStatus } from "../lib/generated/PermissionStatus";
 
 const PERMISSION_LABELS: Record<PermissionStatus, string> = {
   authorized: "Authorized",

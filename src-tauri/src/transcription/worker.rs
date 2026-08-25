@@ -10,13 +10,11 @@ use tokio::process::{Child, ChildStdin, ChildStdout, Command};
 use tokio::sync::Mutex;
 use tokio::time::timeout;
 use tracing::info;
-use ts_rs::TS;
 
 const HANDSHAKE_TIMEOUT: Duration = Duration::from_secs(30);
 const MODEL_PREPARE_TIMEOUT: Duration = Duration::from_secs(120);
 
-#[derive(Debug, Serialize, Deserialize, Clone, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct TranscriptionResultPayload {
     pub text: String,
     pub detected_language: Option<String>,

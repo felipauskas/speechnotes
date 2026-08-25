@@ -1,8 +1,6 @@
 use serde::{Deserialize, Serialize};
-use ts_rs::TS;
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Clone, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub enum PermissionStatus {
     NotDetermined,
@@ -105,65 +103,5 @@ mod tests {
                 | PermissionStatus::Denied
                 | PermissionStatus::Authorized
         ));
-    }
-
-    #[test]
-    #[ignore = "requires live microphone stream"]
-    fn test_cpal_input_stream_capture() {
-        use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
-        use std::sync::atomic::{AtomicU32, Ordering};
-        use std::sync::Arc;
-
-        let host = cpal::default_host();
-        println!("--- ALL AVAILABLE INPUT DEVICES ---");
-        if let Ok(devs) = host.input_devices() {
-            for (idx, dev) in devs.enumerate() {
-                let name = dev.name().unwrap_or_default();
-                println!("Device [{idx}]: {name}");
-            }
-        }
-
-        let device = host
-            .default_input_device()
-            .expect("Default input device must exist");
-        let dev_name = device.name().unwrap_or_default();
-        println!("CPAL Default Input Device: {}", dev_name);
-
-        let config: cpal::StreamConfig = device
-            .default_input_config()
-            .expect("Default config")
-            .into();
-        println!(
-            "CPAL Config: {} Hz, {} channels",
-            config.sample_rate.0, config.channels
-        );
-
-        let count = Arc::new(AtomicU32::new(0));
-        let count_cb = count.clone();
-
-        let stream = device
-            .build_input_stream(
-                &config,
-                move |data: &[f32], _| {
-                    count_cb.fetch_add(data.len() as u32, Ordering::Relaxed);
-                },
-                move |err| {
-                    println!("CPAL Stream Error: {:?}", err);
-                },
-                None,
-            )
-            .expect("Failed to build input stream");
-
-        stream.play().expect("Failed to play input stream");
-        std::thread::sleep(std::time::Duration::from_millis(300));
-        let samples_captured = count.load(Ordering::Relaxed);
-        println!(
-            "Captured {} samples in 300ms from CPAL stream",
-            samples_captured
-        );
-        assert!(
-            samples_captured > 0,
-            "CPAL input stream should capture samples"
-        );
     }
 }

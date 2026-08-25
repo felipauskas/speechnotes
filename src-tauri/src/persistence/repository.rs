@@ -4,14 +4,12 @@ use chrono::Utc;
 use rusqlite::{params, Row};
 use serde::{Deserialize, Serialize};
 use std::sync::Arc;
-use ts_rs::TS;
 
 const RECORD_COLUMNS: &str = "id, created_at, updated_at, status, text, language,
     audio_duration_ms, processing_duration_ms, engine_id, engine_version, model_id,
     error_code, error_message, copied_at";
 
-#[derive(Debug, Serialize, Deserialize, Clone, TS)]
-#[ts(export, export_to = "../../src/lib/generated/")]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct TranscriptionRecord {
     pub id: String,
     pub created_at: i64,
