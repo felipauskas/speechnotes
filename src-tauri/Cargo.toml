@@ -1,0 +1,50 @@
+[package]
+name = "speechnotes"
+version = "0.1.0"
+description = "Local-First macOS Speech-to-Text Desktop App"
+authors = ["Felipe de Leon"]
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/felipauskas/speechnotes"
+
+[lib]
+name = "speechnotes_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[profile.release]
+strip = "debuginfo"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "macos-private-api", "image-png"] }
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-single-instance = "2"
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+ts-rs = { version = "10.1", features = ["chrono-impl", "uuid-impl"] }
+tokio = { version = "1", features = ["full"] }
+
+cpal = "0.15"
+ringbuf = "0.4"
+rubato = "0.16"
+hound = "3.5"
+rusqlite = { version = "0.32", features = ["bundled"] }
+uuid = { version = "1.8", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+sha2 = "0.10"
+reqwest = { version = "0.12", features = ["stream"] }
+futures-util = "0.3"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-foundation = "0.3"
+objc2-app-kit = "0.3"
+objc2-av-foundation = "0.3"
+block2 = "0.6"

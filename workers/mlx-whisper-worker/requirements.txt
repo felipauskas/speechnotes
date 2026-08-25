@@ -1,0 +1,4 @@
+mlx-whisper==0.4.3
+mlx==0.32.1
+mlx-metal==0.32.1; platform_system == "Darwin"
+pyinstaller==6.21.0
