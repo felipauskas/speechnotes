@@ -35,17 +35,9 @@ Every transcript is kept in a searchable local library (SQLite + full-text searc
 
 ## Install
 
-0.1.0 is built from source. A notarized GitHub Release DMG is not published yet.
+Download `Speech Notes_0.1.0_aarch64.dmg` from [Releases](https://github.com/felipauskas/speechnotes/releases), mount it, and drag the app to Applications.
 
-Source builds require Rust, Node.js, and an arm64 Python 3.12 interpreter on Apple Silicon macOS.
-
-```sh
-npm ci
-npm run build:mlx-worker
-npm run tauri build
-```
-
-The production DMG is also produced by `npm run build:release`. On first launch, SpeechNotes opens Settings. Select **Install Model** and wait for the verified 3.1 GB download to finish before recording.
+On first launch, SpeechNotes opens Settings. Select **Install Model** and wait for the verified 3.1 GB download to finish before recording.
 
 The binary is ad-hoc signed (not notarized), so Gatekeeper warns on first launch. Right-click the app → **Open** → **Open** (needed once), or run:
 
